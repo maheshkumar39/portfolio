@@ -66,7 +66,7 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* Left - image with decorations */}
             <div className="relative flex justify-center">
-              <div className="relative w-80 h-96">
+              <div className="relative w-full max-w-[20rem] h-[24rem] sm:w-80 sm:h-96">
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-500/20 to-blue-600/20 blur-2xl" />
                 <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
                   <img
@@ -78,7 +78,7 @@ export default function About() {
                 </div>
 
                 {/* Code snippet overlay */}
-                <div className="absolute -bottom-6 -right-6 bg-[#0f1729]/90 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-4 w-52 shadow-2xl">
+                <div className="absolute -bottom-4 right-0 sm:-bottom-6 sm:-right-6 bg-[#0f1729]/90 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-4 w-44 sm:w-52 shadow-2xl">
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-3 h-3 rounded-full bg-red-500" />
                     <div className="w-3 h-3 rounded-full bg-yellow-500" />
@@ -93,7 +93,7 @@ export default function About() {
                 </div>
 
                 {/* COMSATS badge */}
-                <div className="absolute -top-4 -left-4 bg-[#0f1729]/90 backdrop-blur-sm border border-blue-500/20 rounded-xl p-3 shadow-xl">
+                <div className="absolute -top-3 -left-2 sm:-top-4 sm:-left-4 bg-[#0f1729]/90 backdrop-blur-sm border border-blue-500/20 rounded-xl p-3 shadow-xl">
                   <div className="text-xs text-gray-400">Education</div>
                   <div className="text-sm font-bold text-white">B.S. Software Eng.</div>
                   <div className="text-xs text-cyan-400">COMSATS Islamabad</div>
@@ -143,7 +143,7 @@ export default function About() {
               </div>
 
               {/* Languages */}
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1 bg-[#0f1729] border border-white/5 rounded-xl p-4">
                   <div className="text-xs text-gray-500 mb-1">Language</div>
                   <div className="text-white font-semibold">English</div>

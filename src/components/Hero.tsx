@@ -159,7 +159,7 @@ export default function Hero() {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-2 w-full max-w-sm mt-4">
+            <div className="grid grid-cols-1 min-[440px]:grid-cols-3 gap-2 w-full max-w-sm mt-4">
               <div className="bg-[#0f1729] border border-cyan-500/30 rounded-xl px-3 py-2 text-center">
                 <div className="text-[10px] text-gray-400">Experience</div>
                 <div className="text-sm font-bold text-white">1+ Years</div>

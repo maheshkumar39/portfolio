@@ -95,7 +95,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left - contact info */}
           <div className={`space-y-6 transition-all duration-700 delay-200 ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-            <div className="bg-[#0f1729] border border-white/5 rounded-3xl p-8 space-y-6">
+            <div className="bg-[#0f1729] border border-white/5 rounded-3xl p-5 sm:p-8 space-y-6">
               <div>
                 <h3 className="text-xl font-bold text-white mb-2">Let's work together</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
@@ -124,17 +124,17 @@ export default function Contact() {
                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center shadow-lg ${glow} flex-shrink-0`}>
                     <Icon size={20} className="text-white" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <div className="text-xs text-gray-500 mb-0.5">{label}</div>
-                    <div className="text-white font-medium group-hover:text-cyan-300 transition-colors">{value}</div>
+                    <div className="text-white font-medium group-hover:text-cyan-300 transition-colors break-words">{value}</div>
                   </div>
-                  <ArrowRight size={16} className="ml-auto text-gray-600 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                  <ArrowRight size={16} className="ml-auto hidden sm:block text-gray-600 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
                 </a>
               ))}
             </div>
 
             {/* Socials */}
-            <div className="bg-[#0f1729] border border-white/5 rounded-3xl p-6">
+            <div className="bg-[#0f1729] border border-white/5 rounded-3xl p-5 sm:p-6">
               <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Find me online</h4>
               <div className="space-y-3">
                 {socials.map(({ icon: Icon, label, href, username }) => (
@@ -148,9 +148,9 @@ export default function Contact() {
                     <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
                       <Icon size={16} className="text-gray-400 group-hover:text-white transition-colors" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <div className="text-xs text-gray-500">{label}</div>
-                      <div className="text-gray-300 text-sm font-medium group-hover:text-white transition-colors">{username}</div>
+                      <div className="text-gray-300 text-sm font-medium group-hover:text-white transition-colors break-all">{username}</div>
                     </div>
                     <ExternalLinkIcon className="ml-auto text-gray-600 group-hover:text-cyan-400 transition-colors" />
                   </a>
@@ -170,7 +170,7 @@ export default function Contact() {
 
           {/* Right - contact form */}
           <div className={`transition-all duration-700 delay-300 ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            <div className="bg-[#0f1729] border border-white/5 rounded-3xl p-8 relative overflow-hidden">
+            <div className="bg-[#0f1729] border border-white/5 rounded-3xl p-5 sm:p-8 relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500" />
 
               {submitted ? (
