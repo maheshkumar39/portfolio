@@ -15,22 +15,39 @@ export default function Navigation() {
   const [active, setActive] = useState('');
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    let rafId: number | null = null;
+    const sectionIds = ['hero', ...navLinks.map((link) => link.href.slice(1))];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
-        });
-      },
-      { rootMargin: '-40% 0px -55% 0px' }
-    );
-    document.querySelectorAll('section[id]').forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+    const updateNavState = () => {
+      const y = window.scrollY;
+      setScrolled(y > 40);
+
+      const pivot = y + window.innerHeight * 0.45;
+      let current = sectionIds[0];
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (pivot >= el.offsetTop) current = id;
+      }
+
+      // Desktop nav only maps to sections after hero.
+      setActive(current === 'hero' ? '' : current);
+      rafId = null;
+    };
+
+    const onScroll = () => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(updateNavState);
+    };
+
+    updateNavState();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
@@ -73,7 +90,9 @@ export default function Navigation() {
 
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300"
+          data-magnetic
+          data-magnetic-strength="0.16"
+          className="magnetic hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300"
         >
           Start a Project
         </a>
@@ -102,7 +121,9 @@ export default function Navigation() {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="mt-2 text-center px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
+            data-magnetic
+            data-magnetic-strength="0.14"
+            className="magnetic mt-2 text-center px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
           >
             Start a Project
           </a>

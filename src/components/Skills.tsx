@@ -129,7 +129,7 @@ function CategoryCard({ cat, visible, index }: { cat: SkillCategory; visible: bo
       }`}
       style={{ transitionDelay: `${index * 100}ms`, transitionProperty: 'opacity, transform' }}
     >
-      <div className={`absolute inset-0 bg-gradient-to-br ${cat.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+      <div className={`absolute inset-0 bg-gradient-to-br ${cat.color} opacity-[0.035] md:opacity-0 md:group-hover:opacity-5 transition-opacity duration-500`} />
 
       <div className="relative">
         <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${cat.color} flex items-center justify-center mb-5 shadow-lg ${cat.glow}`}>
@@ -157,7 +157,7 @@ export default function Skills() {
   const { ref, visible } = useInView();
 
   return (
-    <section id="skills" className="relative py-32 bg-[#080c18] overflow-hidden">
+    <section id="skills" className="relative py-32 bg-[#080c18] overflow-x-hidden overflow-y-visible">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
       <div className="absolute -top-40 right-0 w-96 h-96 rounded-full bg-blue-600/5 blur-3xl" />
       <div className="absolute -bottom-40 left-0 w-96 h-96 rounded-full bg-cyan-500/5 blur-3xl" />

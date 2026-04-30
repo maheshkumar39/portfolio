@@ -167,11 +167,11 @@ function ProjectCard({
       style={{ transitionDelay: `${index * 120}ms`, transitionProperty: 'opacity, transform, border-color, box-shadow' }}
     >
       {/* Image */}
-      <div className="relative aspect-[9/16] overflow-hidden bg-[#0b1222]">
+      <div className="relative aspect-[10/14] sm:aspect-[9/16] overflow-hidden bg-[#0b1222]">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-[1.02]"
+          className="w-full h-full object-cover sm:object-contain sm:p-4 transition-transform duration-700 group-hover:scale-[1.02]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0f1729]/40 via-transparent to-transparent" />
 
@@ -244,11 +244,11 @@ function FeaturedProjectCard({
     >
       <div className="grid md:grid-cols-2">
         {/* Image */}
-        <div className="relative h-64 md:h-auto overflow-hidden">
+        <div className="relative h-[320px] md:h-auto overflow-hidden bg-[#0b1222]">
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover md:object-contain md:p-4 transition-transform duration-700 group-hover:scale-105"
           />
           <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient}`} />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f1729]/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#0f1729]/90" />
@@ -297,19 +297,27 @@ function FeaturedProjectCard({
               href={project.githubLink}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-white/5 text-white border border-white/10 hover:border-green-500/30 hover:bg-green-500/5 hover:text-green-400 transition-all duration-300"
+              data-magnetic
+              data-magnetic-strength="0.12"
+              className="magnetic flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-white/5 text-white border border-white/10 hover:border-green-500/30 hover:bg-green-500/5 hover:text-green-400 transition-all duration-300"
             >
               <GithubMark size={16} />
               GitHub
             </a>
-            <button className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/25 hover:shadow-green-500/50 hover:scale-105 transition-all duration-300">
+            <button
+              data-magnetic
+              data-magnetic-strength="0.14"
+              className="magnetic flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/25 hover:shadow-green-500/50 hover:scale-105 transition-all duration-300"
+            >
               <ExternalLink size={16} />
               Product Walkthrough
             </button>
             {project.screens && project.screens.length > 0 && (
               <button
                 onClick={() => onOpenGallery(project.title, project.screens as string[])}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-green-500/30 text-green-300 hover:bg-green-500/10 hover:border-green-400/50 transition-all duration-300"
+                data-magnetic
+                data-magnetic-strength="0.12"
+                className="magnetic flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border border-green-500/30 text-green-300 hover:bg-green-500/10 hover:border-green-400/50 transition-all duration-300"
               >
                 <Images size={16} />
                 View Screens
@@ -381,7 +389,7 @@ function ScreensGallery({
         onClick={onClose}
       />
       <div className="relative w-full h-full bg-[#030712]/95 animate-in zoom-in-95 duration-300">
-        <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-5 py-4">
+        <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-3 sm:px-5 py-3 sm:py-4">
           <div>
             <div className="text-xs text-gray-500 uppercase tracking-wider">Project Screens</div>
             <h3 className="text-white font-bold">{title}</h3>
@@ -404,7 +412,7 @@ function ScreensGallery({
             key={screens[activeIndex]}
             src={screens[activeIndex]}
             alt={`${title} screen ${activeIndex + 1}`}
-            className={`h-[92vh] w-auto max-w-[100vw] object-contain ${
+            className={`w-auto max-w-[96vw] max-h-[calc(100vh-7rem)] sm:max-h-[92vh] object-contain ${
               direction === 'next' ? 'animate-screen-enter-next' : 'animate-screen-enter-prev'
             }`}
           />
@@ -413,7 +421,7 @@ function ScreensGallery({
               setDirection('prev');
               onPrev();
             }}
-            className="absolute left-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#0b1222]/85 border border-white/20 text-white hover:border-cyan-400/50 transition-all"
+            className="absolute left-2 sm:left-5 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0b1222]/85 border border-white/20 text-white hover:border-cyan-400/50 transition-all"
             aria-label="Previous screen"
           >
             <ChevronLeft size={18} className="mx-auto" />
@@ -423,12 +431,12 @@ function ScreensGallery({
               setDirection('next');
               onNext();
             }}
-            className="absolute right-5 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#0b1222]/85 border border-white/20 text-white hover:border-cyan-400/50 transition-all"
+            className="absolute right-2 sm:right-5 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#0b1222]/85 border border-white/20 text-white hover:border-cyan-400/50 transition-all"
             aria-label="Next screen"
           >
             <ChevronRight size={18} className="mx-auto" />
           </button>
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-[#0b1222]/80 border border-white/15 text-xs text-gray-300 animate-pulse">
+          <div className="absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 px-2.5 sm:px-3 py-1.5 rounded-full bg-[#0b1222]/80 border border-white/15 text-[11px] sm:text-xs text-gray-300 animate-pulse whitespace-nowrap">
             {activeIndex + 1}/{screens.length} - {isPaused ? 'Paused' : 'Auto-play'}
           </div>
         </div>
@@ -458,7 +466,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="relative py-32 bg-[#080c18] overflow-hidden">
+    <section id="projects" className="relative py-32 bg-[#080c18] overflow-x-hidden overflow-y-visible">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
       <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-emerald-500/5 blur-3xl" />
 
@@ -517,7 +525,9 @@ export default function Projects() {
             href="https://github.com/maheshkumar39"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm border border-white/10 text-gray-300 hover:text-white hover:border-cyan-400/30 hover:bg-cyan-500/5 transition-all duration-300"
+            data-magnetic
+            data-magnetic-strength="0.14"
+            className="magnetic inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-sm border border-white/10 text-gray-300 hover:text-white hover:border-cyan-400/30 hover:bg-cyan-500/5 transition-all duration-300"
           >
             <GithubMark size={18} />
             View All on GitHub

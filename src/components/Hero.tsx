@@ -123,7 +123,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0f1e]"
+      className="relative min-h-screen flex items-center overflow-x-hidden overflow-y-visible bg-[#0a0f1e] pb-14 md:pb-20"
     >
       {/* Animated canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
@@ -138,12 +138,41 @@ export default function Hero() {
         <FloatingParticle key={i} style={p} />
       ))}
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 grid md:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 md:py-32 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
         {/* Left content */}
-        <div className="space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 text-sm font-medium">
+        <div className="space-y-8 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 text-sm font-medium mx-auto md:mx-0">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
             Available for new opportunities
+          </div>
+
+          {/* Mobile profile block - shown before name */}
+          <div className="md:hidden flex flex-col items-center gap-4 mb-8">
+            <div className="relative my-2">
+              <div className="absolute -inset-3 rounded-full border-2 border-cyan-500/15 border-t-cyan-300 border-r-cyan-400/80 animate-spin-slow" />
+              <div className="absolute -inset-6 rounded-full border-2 border-blue-500/10 border-b-blue-300/80 border-l-blue-400/70 animate-spin-slow-reverse" />
+              <div className="relative z-10 w-[16rem] h-[16rem] rounded-full overflow-hidden border-2 border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
+                <img
+                  src="/assets/profile-pic/profile.jpg"
+                  alt="Mahesh Kumar"
+                  className="w-full h-full object-cover object-center scale-110"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-2 w-full max-w-sm mt-4">
+              <div className="bg-[#0f1729] border border-cyan-500/30 rounded-xl px-3 py-2 text-center">
+                <div className="text-[10px] text-gray-400">Experience</div>
+                <div className="text-sm font-bold text-white">1+ Years</div>
+              </div>
+              <div className="bg-[#0f1729] border border-blue-500/30 rounded-xl px-3 py-2 text-center">
+                <div className="text-[10px] text-gray-400">Projects</div>
+                <div className="text-sm font-bold text-white">5+ Apps</div>
+              </div>
+              <div className="bg-[#0f1729] border border-emerald-500/30 rounded-xl px-3 py-2 text-center">
+                <div className="text-[10px] text-gray-400">Stack</div>
+                <div className="text-sm font-bold text-emerald-400">Full Stack</div>
+              </div>
+            </div>
           </div>
 
           <div>
@@ -154,31 +183,17 @@ export default function Hero() {
                 Kumar
               </span>
             </h1>
-            <div className="mt-4 text-xl md:text-2xl font-light text-gray-400 h-8">
+            <div className="mt-4 text-xl md:text-2xl font-light text-gray-400 h-8 flex items-center justify-center md:justify-start">
               <TypeWriter words={roles} />
             </div>
           </div>
 
-          <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
+          <p className="text-gray-400 text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
             I design and ship mobile + web experiences that move business metrics, not just pixels.
             From idea to release, I focus on performance, clarity, and measurable outcomes.
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
-            {[
-              { label: 'Projects', value: '8+' },
-              { label: 'Domains', value: '3' },
-              { label: 'Experience', value: '1+ year' },
-              { label: 'Response', value: '<24h' },
-            ].map((item) => (
-              <div key={item.label} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-                <div className="text-white font-semibold">{item.value}</div>
-                <div className="text-gray-500 text-xs">{item.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+          <div className="flex flex-wrap gap-4 text-sm text-gray-500 justify-center md:justify-start">
             <span className="flex items-center gap-1.5">
               <MapPin size={14} className="text-cyan-400" />
               Islamabad, Pakistan
@@ -193,10 +208,12 @@ export default function Hero() {
             </span>
           </div>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3 sm:gap-4 justify-center md:justify-start">
             <a
               href="#projects"
-              className="group px-8 py-3.5 rounded-full font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/60 hover:scale-105 transition-all duration-300 flex items-center gap-2"
+              data-magnetic
+              data-magnetic-strength="0.16"
+              className="magnetic w-full sm:w-auto justify-center group px-8 py-3.5 rounded-full font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/60 hover:scale-105 transition-all duration-300 flex items-center gap-2"
             >
               Explore Case Studies
               <ArrowDown size={16} className="group-hover:translate-y-1 transition-transform" />
@@ -204,20 +221,24 @@ export default function Hero() {
             <a
               href="/assets/FullStack React Native Developer.pdf"
               download
-              className="px-8 py-3.5 rounded-full font-semibold text-sm border border-white/20 text-white hover:border-cyan-400/50 hover:bg-white/5 transition-all duration-300 flex items-center gap-2"
+              data-magnetic
+              data-magnetic-strength="0.14"
+              className="magnetic w-full sm:w-auto justify-center px-8 py-3.5 rounded-full font-semibold text-sm border border-white/20 text-white hover:border-cyan-400/50 hover:bg-white/5 transition-all duration-300 flex items-center gap-2"
             >
               <Download size={16} />
               Download Resume
             </a>
             <a
               href="#contact"
-              className="px-8 py-3.5 rounded-full font-semibold text-sm border border-cyan-500/30 text-cyan-300 hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-all duration-300"
+              data-magnetic
+              data-magnetic-strength="0.14"
+              className="magnetic w-full sm:w-auto text-center px-8 py-3.5 rounded-full font-semibold text-sm border border-cyan-500/30 text-cyan-300 hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-all duration-300"
             >
               Book Intro Call
             </a>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 justify-center md:justify-start">
             <a
               href="https://github.com/maheshkumar39"
               target="_blank"
@@ -244,14 +265,14 @@ export default function Hero() {
         </div>
 
         {/* Right - avatar / code block */}
-        <div className="hidden md:flex justify-center items-center">
-          <div className="relative">
+        <div className="hidden md:flex justify-center items-center lg:pr-16 xl:pr-24 pb-12">
+          <div className="relative my-6 mb-14">
             {/* Outer ring */}
-            <div className="absolute inset-0 rounded-full border-2 border-cyan-400/20 animate-spin-slow" />
-            <div className="absolute inset-4 rounded-full border border-blue-500/20 animate-spin-slow-reverse" />
+            <div className="absolute -inset-3 rounded-full border-2 border-cyan-500/15 border-t-cyan-300 border-r-cyan-400/80 animate-spin-slow" />
+            <div className="absolute -inset-8 rounded-full border-2 border-blue-500/10 border-b-blue-300/80 border-l-blue-400/70 animate-spin-slow-reverse" />
 
             {/* Avatar card */}
-            <div className="relative w-72 h-72 rounded-full overflow-hidden border-2 border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
+            <div className="relative z-10 w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
               <img
                 src="/assets/profile-pic/profile.jpg"
                 alt="Mahesh Kumar"
@@ -261,15 +282,15 @@ export default function Hero() {
             </div>
 
             {/* Floating badges */}
-            <div className="absolute -top-4 -right-4 bg-[#0f1729] border border-cyan-500/30 rounded-2xl px-4 py-3 shadow-xl shadow-cyan-500/10">
+            <div className="absolute z-20 -top-3 md:-right-12 lg:-right-20 xl:-right-24 bg-[#0f1729] border border-cyan-500/30 rounded-2xl px-4 py-3 shadow-xl shadow-cyan-500/10">
               <div className="text-xs text-gray-400">Experience</div>
               <div className="text-lg font-bold text-white">1+ Years</div>
             </div>
-            <div className="absolute -bottom-4 -left-4 bg-[#0f1729] border border-blue-500/30 rounded-2xl px-4 py-3 shadow-xl shadow-blue-500/10">
+            <div className="absolute z-20 -bottom-3 md:-left-12 lg:-left-20 xl:-left-24 bg-[#0f1729] border border-blue-500/30 rounded-2xl px-4 py-3 shadow-xl shadow-blue-500/10">
               <div className="text-xs text-gray-400">Projects</div>
               <div className="text-lg font-bold text-white">5+ Apps</div>
             </div>
-            <div className="absolute top-1/2 -right-16 -translate-y-1/2 bg-[#0f1729] border border-emerald-500/30 rounded-2xl px-4 py-3 shadow-xl shadow-emerald-500/10">
+            <div className="absolute z-20 top-1/2 md:-right-16 lg:-right-24 xl:-right-28 -translate-y-1/2 bg-[#0f1729] border border-emerald-500/30 rounded-2xl px-4 py-3 shadow-xl shadow-emerald-500/10">
               <div className="text-xs text-gray-400">Stack</div>
               <div className="text-sm font-bold text-emerald-400">Full Stack</div>
             </div>

@@ -75,7 +75,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-32 bg-[#0a0f1e] overflow-hidden">
+    <section id="contact" className="relative py-32 bg-[#0a0f1e] overflow-x-hidden overflow-y-visible">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
       <div className="absolute top-1/4 -right-32 w-96 h-96 rounded-full bg-cyan-500/5 blur-3xl" />
       <div className="absolute bottom-1/4 -left-32 w-96 h-96 rounded-full bg-blue-600/5 blur-3xl" />
@@ -252,7 +252,9 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-[1.02] active:scale-[0.99] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+                    data-magnetic
+                    data-magnetic-strength="0.12"
+                    className="magnetic w-full flex items-center justify-center gap-2 py-4 rounded-xl font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-[1.02] active:scale-[0.99] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {loading ? (
                       <>

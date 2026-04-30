@@ -47,7 +47,7 @@ export default function About() {
   const { ref, visible } = useInView();
 
   return (
-    <section id="about" className="relative py-32 bg-[#0a0f1e] overflow-hidden">
+    <section id="about" className="relative py-32 bg-[#0a0f1e] overflow-x-hidden overflow-y-visible">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMwLTkuOTQtOC4wNi0xOC0xOC0xOFYwaDQydjQySDE4YzkuOTQgMCAxOC04LjA2IDE4LTE4eiIgZmlsbD0icmdiYSgzNCwyMTEsMjM4LDAuMDIpIi8+PC9nPjwvc3ZnPg==')] opacity-30" />
@@ -165,7 +165,7 @@ export default function About() {
                 key={label}
                 className="group relative bg-[#0f1729] border border-white/5 rounded-2xl p-6 text-center hover:border-cyan-500/30 hover:bg-[#0f1a30] transition-all duration-300 overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-30 md:opacity-0 md:group-hover:opacity-100 transition-opacity" />
                 <div className="relative">
                   <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mx-auto mb-3">
                     <Icon size={20} className="text-cyan-400" />

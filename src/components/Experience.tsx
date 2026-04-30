@@ -57,7 +57,7 @@ export default function Experience() {
   const [activeProject, setActiveProject] = useState(0);
 
   return (
-    <section id="experience" className="relative py-32 bg-[#0a0f1e] overflow-hidden">
+    <section id="experience" className="relative py-32 bg-[#0a0f1e] overflow-x-hidden overflow-y-visible">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-cyan-500/3 blur-3xl pointer-events-none" />
 
