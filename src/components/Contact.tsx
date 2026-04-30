@@ -24,32 +24,54 @@ const socials = [
 ];
 
 export default function Contact() {
+  const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
   const { ref, visible } = useInView();
   const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage('');
+
+    if (!WEB3FORMS_KEY) {
+      setErrorMessage('Missing Web3Forms key. Add VITE_WEB3FORMS_ACCESS_KEY in .env.');
+      return;
+    }
+
     setLoading(true);
+    try {
+      const payload = {
+        access_key: WEB3FORMS_KEY,
+        subject: formState.subject.trim() || 'Portfolio Contact',
+        from_name: formState.name,
+        from_email: formState.email,
+        message: formState.message,
+      };
 
-    const emailTo = 'maheshkprem@gmail.com';
-    const safeSubject = encodeURIComponent(formState.subject.trim() || 'Portfolio Contact');
-    const safeBody = encodeURIComponent(
-      `Hi Mahesh,\n\n${formState.message}\n\nFrom:\nName: ${formState.name}\nEmail: ${formState.email}`
-    );
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
 
-    // Open default mail client with prefilled draft.
-    window.location.href = `mailto:${emailTo}?subject=${safeSubject}&body=${safeBody}`;
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || 'Unable to send message.');
+      }
 
-    setTimeout(() => {
-      setLoading(false);
       setSubmitted(true);
-    }, 500);
+      setFormState({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -171,7 +193,7 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <h3 className="text-white font-bold text-xl mb-1">Send a Message</h3>
-                    <p className="text-gray-500 text-sm">Fill out the form to open your email app with a ready-to-send draft.</p>
+                    <p className="text-gray-500 text-sm">Fill out the form and send directly. No email app required.</p>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-5">
@@ -244,6 +266,8 @@ export default function Contact() {
                       </>
                     )}
                   </button>
+
+                  {errorMessage && <p className="text-red-400 text-xs">{errorMessage}</p>}
                 </form>
               )}
             </div>
