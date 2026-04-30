@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Code2 } from 'lucide-react';
 
 const navLinks = [
-  { label: 'About', href: '#about' },
+  { label: 'Story', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'Case Studies', href: '#projects' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -75,7 +75,7 @@ export default function Navigation() {
           href="#contact"
           className="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300"
         >
-          Hire Me
+          Start a Project
         </a>
 
         <button
@@ -104,7 +104,7 @@ export default function Navigation() {
             onClick={() => setOpen(false)}
             className="mt-2 text-center px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
           >
-            Hire Me
+            Start a Project
           </a>
         </div>
       )}

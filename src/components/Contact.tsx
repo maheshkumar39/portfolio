@@ -36,10 +36,20 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
+    const emailTo = 'maheshkprem@gmail.com';
+    const safeSubject = encodeURIComponent(formState.subject.trim() || 'Portfolio Contact');
+    const safeBody = encodeURIComponent(
+      `Hi Mahesh,\n\n${formState.message}\n\nFrom:\nName: ${formState.name}\nEmail: ${formState.email}`
+    );
+
+    // Open default mail client with prefilled draft.
+    window.location.href = `mailto:${emailTo}?subject=${safeSubject}&body=${safeBody}`;
+
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-    }, 1500);
+    }, 500);
   };
 
   return (
@@ -50,13 +60,13 @@ export default function Contact() {
 
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         <div className={`text-center mb-16 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <span className="text-cyan-400 text-sm font-semibold tracking-widest uppercase">Let's Connect</span>
+          <span className="text-cyan-400 text-sm font-semibold tracking-widest uppercase">Next Step</span>
           <h2 className="mt-3 text-4xl md:text-5xl font-black text-white">
-            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Touch</span>
+            Let's build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">useful</span>
           </h2>
           <div className="mt-4 w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full" />
           <p className="mt-6 text-gray-400 max-w-xl mx-auto">
-            Have a project in mind or looking for a skilled developer? I'd love to hear from you. Let's build something amazing together.
+            If you need a React Native or web product that users actually enjoy, send the brief and I can propose a practical execution plan.
           </p>
         </div>
 
@@ -67,8 +77,20 @@ export default function Contact() {
               <div>
                 <h3 className="text-xl font-bold text-white mb-2">Let's work together</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  I'm currently available for freelance work and full-time opportunities. Whether you need a mobile app, web solution, or just want to talk tech — reach out!
+                  I am available for freelance and full-time opportunities. Best fit includes MVP builds,
+                  product revamps, and performance-focused app improvements.
                 </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {['MVP Build', 'React Native App', 'Web Dashboard', 'Product Revamp'].map((service) => (
+                  <span
+                    key={service}
+                    className="px-3 py-1.5 rounded-full text-xs font-medium border border-cyan-500/30 bg-cyan-500/10 text-cyan-300"
+                  >
+                    {service}
+                  </span>
+                ))}
               </div>
 
               {contactInfo.map(({ icon: Icon, label, value, href, color, glow }) => (
@@ -149,7 +171,7 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <h3 className="text-white font-bold text-xl mb-1">Send a Message</h3>
-                    <p className="text-gray-500 text-sm">Fill out the form and I'll be in touch.</p>
+                    <p className="text-gray-500 text-sm">Fill out the form to open your email app with a ready-to-send draft.</p>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-5">

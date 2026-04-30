@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { Github, Linkedin, Mail, Phone, MapPin, Download, ArrowDown } from 'lucide-react';
+import { Github, Linkedin, Mail, Phone, MapPin, ArrowDown, Download } from 'lucide-react';
 
 const roles = [
-  'Full Stack Developer',
-  'React Native Expert',
-  'Mobile App Architect',
-  'UI/UX Enthusiast',
+  'React Native Product Engineer',
+  'Frontend Craftsperson',
+  'Cross-Platform App Builder',
+  'Business-first Developer',
 ];
 
 function TypeWriter({ words }: { words: string[] }) {
@@ -159,10 +159,24 @@ export default function Hero() {
             </div>
           </div>
 
-          <p className="text-gray-400 text-lg leading-relaxed max-w-lg">
-            Crafting high-performance cross-platform apps and web solutions. Turning complex
-            problems into elegant, scalable products that users love.
+          <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
+            I design and ship mobile + web experiences that move business metrics, not just pixels.
+            From idea to release, I focus on performance, clarity, and measurable outcomes.
           </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+            {[
+              { label: 'Projects', value: '8+' },
+              { label: 'Domains', value: '3' },
+              { label: 'Experience', value: '1+ year' },
+              { label: 'Response', value: '<24h' },
+            ].map((item) => (
+              <div key={item.label} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+                <div className="text-white font-semibold">{item.value}</div>
+                <div className="text-gray-500 text-xs">{item.label}</div>
+              </div>
+            ))}
+          </div>
 
           <div className="flex flex-wrap gap-4 text-sm text-gray-500">
             <span className="flex items-center gap-1.5">
@@ -184,15 +198,22 @@ export default function Hero() {
               href="#projects"
               className="group px-8 py-3.5 rounded-full font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/60 hover:scale-105 transition-all duration-300 flex items-center gap-2"
             >
-              View My Work
+              Explore Case Studies
               <ArrowDown size={16} className="group-hover:translate-y-1 transition-transform" />
             </a>
             <a
-              href="#contact"
+              href="/assets/FullStack React Native Developer.pdf"
+              download
               className="px-8 py-3.5 rounded-full font-semibold text-sm border border-white/20 text-white hover:border-cyan-400/50 hover:bg-white/5 transition-all duration-300 flex items-center gap-2"
             >
               <Download size={16} />
-              Get In Touch
+              Download Resume
+            </a>
+            <a
+              href="#contact"
+              className="px-8 py-3.5 rounded-full font-semibold text-sm border border-cyan-500/30 text-cyan-300 hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-all duration-300"
+            >
+              Book Intro Call
             </a>
           </div>
 
@@ -232,7 +253,7 @@ export default function Hero() {
             {/* Avatar card */}
             <div className="relative w-72 h-72 rounded-full overflow-hidden border-2 border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
               <img
-                src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=600"
+                src="/assets/profile-pic/profile.jpg"
                 alt="Mahesh Kumar"
                 className="w-full h-full object-cover object-center scale-110"
               />

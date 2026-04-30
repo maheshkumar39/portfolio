@@ -73,4 +73,20 @@
   .animate-pulse-slow-delay {
     animation: pulse-slow 6s ease-in-out 3s infinite;
   }
+
+  @keyframes screen-enter-next {
+    0% { opacity: 0; transform: translateX(28px) scale(0.985); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+  }
+  .animate-screen-enter-next {
+    animation: screen-enter-next 420ms ease-out;
+  }
+
+  @keyframes screen-enter-prev {
+    0% { opacity: 0; transform: translateX(-28px) scale(0.985); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+  }
+  .animate-screen-enter-prev {
+    animation: screen-enter-prev 420ms ease-out;
+  }
 }

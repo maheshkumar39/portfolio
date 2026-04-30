@@ -16,9 +16,9 @@ export default function Footer() {
           </div>
 
           <p className="text-gray-500 text-sm flex items-center gap-1.5">
-            Built with
+            Designed and built with
             <Heart size={13} className="text-rose-400 fill-rose-400" />
-            by Mahesh Kumar &mdash; &copy; {year}
+            by Mahesh Kumar &mdash; Product-focused Engineer &copy; {year}
           </p>
 
           <div className="flex items-center gap-3">

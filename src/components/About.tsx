@@ -28,6 +28,21 @@ const interests = [
   'Gaming',
 ];
 
+const process = [
+  {
+    title: 'Discover',
+    description: 'Clarify user pain points, business goals, and constraints before writing code.',
+  },
+  {
+    title: 'Build',
+    description: 'Ship fast with scalable architecture, reusable components, and clean state management.',
+  },
+  {
+    title: 'Refine',
+    description: 'Measure performance, fix UX friction, and optimize for retention and conversion.',
+  },
+];
+
 export default function About() {
   const { ref, visible } = useInView();
 
@@ -41,9 +56,9 @@ export default function About() {
         <div className={`transition-all duration-1000 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           {/* Section header */}
           <div className="text-center mb-20">
-            <span className="text-cyan-400 text-sm font-semibold tracking-widest uppercase">Who I Am</span>
+            <span className="text-cyan-400 text-sm font-semibold tracking-widest uppercase">My Story</span>
             <h2 className="mt-3 text-4xl md:text-5xl font-black text-white">
-              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Me</span>
+              Why teams trust me to <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">ship</span>
             </h2>
             <div className="mt-4 w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto rounded-full" />
           </div>
@@ -89,19 +104,28 @@ export default function About() {
             {/* Right - text content */}
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-white">
-                Results-driven developer building
-                <span className="text-cyan-400"> tomorrow's apps today</span>
+                I blend product thinking with engineering
+                <span className="text-cyan-400"> to build useful digital products</span>
               </h3>
               <p className="text-gray-400 leading-relaxed">
-                I'm a Full Stack and React Native Developer with hands-on experience building cross-platform
-                mobile applications and web solutions. My work spans real estate, fintech, and EdTech domains
-                — each project sharpening my craft further.
+                I am a Full Stack and React Native developer focused on outcomes: faster launches,
+                better usability, and reliable systems. I have delivered products in real estate, fintech,
+                and EdTech where business goals and user experience both matter.
               </p>
               <p className="text-gray-400 leading-relaxed">
-                Proficient in JavaScript, TypeScript, React Native, React.js, Node.js, and cloud services
-                including Firebase and Supabase. I'm passionate about clean code, performance optimization,
-                and continuous learning.
+                My core stack includes JavaScript/TypeScript, React Native, React.js, Node.js, Firebase,
+                and Supabase. I value clean architecture, smooth interactions, and continuous iteration based
+                on real feedback.
               </p>
+
+              <div className="grid sm:grid-cols-3 gap-3">
+                {process.map((step) => (
+                  <div key={step.title} className="rounded-xl border border-white/10 bg-white/5 p-4">
+                    <div className="text-cyan-400 text-xs font-semibold uppercase tracking-wider">{step.title}</div>
+                    <p className="mt-2 text-sm text-gray-400 leading-relaxed">{step.description}</p>
+                  </div>
+                ))}
+              </div>
 
               {/* Interests */}
               <div>
